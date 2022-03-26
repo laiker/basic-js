@@ -1,6 +1,6 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-module.exports = function createDreamTeam( members ) {
+function createDreamTeam( members ) {
   if(!Array.isArray(members)) {
     return false;
   }
@@ -19,4 +19,8 @@ module.exports = function createDreamTeam( members ) {
       }
   }
   return teamName.sort().join('');
+};
+
+module.exports = {
+  createDreamTeam
 };

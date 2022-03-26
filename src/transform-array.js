@@ -1,6 +1,6 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-module.exports = function transform(arr) {
+function transform(arr) {
   if (!Array.isArray(arr)) {
     throw new Error("'arr' parameter must be an instance of the Array!");
   }
@@ -37,4 +37,8 @@ module.exports = function transform(arr) {
   }
   return newArray;
 
+};
+
+module.exports = {
+  transform
 };

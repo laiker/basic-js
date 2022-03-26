@@ -1,9 +1,9 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-const MODERN_ACTIVITY= 15; 
-const HALF_LIFE_PERIOD= 5730;
+const MODERN_ACTIVITY = 15;
+const HALF_LIFE_PERIOD = 5730;
 
-module.exports = function dateSample(sampleActivity) {
+function dateSample(sampleActivity) {
   activity = parseFloat(sampleActivity);
   if (typeof sampleActivity != 'string')
     return false;
@@ -13,6 +13,10 @@ module.exports = function dateSample(sampleActivity) {
   if (years < 0 || years > HALF_LIFE_PERIOD * 10 || isNaN(years)) {
     return false;
   }
-
+ 
   return years;
+};
+
+module.exports = {
+  dateSample
 };

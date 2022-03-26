@@ -1,8 +1,9 @@
-const CustomError = require("../extensions/custom-error");
-module.exports = class DepthCalculator {
-  calculateDepth(arr, arrcnt = 1, lastValue = false, maxValues = null) {
+const { NotImplementedError } = require('../extensions/index.js');
 
-    if (maxValue == null) {
+class DepthCalculator {
+  calculateDepth(arr, arrcnt = 1, lastValue = false, maxValues = null) {
+    
+    if (maxValues == null) {
       var maxValues = [];
     }
     
@@ -10,21 +11,27 @@ module.exports = class DepthCalculator {
       lastValue = true;
       arr.push('last');
     }
-    //console.log(arr);
-    for(var i = 0; i < arr.length; i++) {
-      if (arr[i] != 'last') {
-        if(!Array.isArray(arr[i])) {
-          return 0;
-        }
 
-        return maxValues.push(this.calculateDepth(arr[i], arrcnt + 1));
+    for(var i = 0; i < arr.length; i++) {
+
+      if (arr[i] == 'last') {
+        if (![...maxValues].length) {
+          return 1;
+        }
+        return Math.max(...maxValues);
       }
-       
+
+      if(!Array.isArray(arr[i])) {
+        continue;
+      }
+      
+      maxValues.push(this.calculateDepth(arr[i], arrcnt + 1, lastValue, maxValues));
     }
 
-   
-    
-
-    return this.calculateDepth(arr);
+    return arrcnt;
   }
+}
+
+module.exports = {
+  DepthCalculator
 };

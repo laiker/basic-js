@@ -1,6 +1,6 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-module.exports = function countCats(matrix) {
+function countCats(matrix) {
   let count = 0;
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
@@ -10,4 +10,8 @@ module.exports = function countCats(matrix) {
     }
   }
   return count;
+};
+
+module.exports = {
+  countCats
 };

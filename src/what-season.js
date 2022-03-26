@@ -1,6 +1,18 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-module.exports = function getSeason(date) {
+/**
+ * Extract season from given date and expose the enemy scout!
+ * 
+ * @param {Date | FakeDate} date real or fake date
+ * @returns {String} time of the year
+ * 
+ * @example
+ * 
+ * getSeason(new Date(2020, 02, 31)) => 'spring'
+ * 
+ */
+
+function getSeason(date) {
   if(date == null) {
     return 'Unable to determine the time of year!';
   }
@@ -8,7 +20,7 @@ module.exports = function getSeason(date) {
   try {
     date.getTime();
   } catch(thrown) {
-    throw new Error(thrown);
+    throw new Error('Invalid date!');
   }
 
   var month = date.getMonth();
@@ -30,7 +42,8 @@ module.exports = function getSeason(date) {
     case 10:
       return 'autumn';
   }
+};
 
-  
-
+module.exports = {
+  getSeason
 };

@@ -1,6 +1,6 @@
-const CustomError = require("../extensions/custom-error");
+const { NotImplementedError } = require('../extensions/index.js');
 
-module.exports = function repeater(str, options) {
+function repeater(str, options) {
   let strParts = [];
   let mainStrs = []; 
   let strAddition = '';
@@ -39,4 +39,7 @@ module.exports = function repeater(str, options) {
 
   return mainStrs.join(options.separator);
 };
-  
+
+module.exports = {
+  repeater
+};
